@@ -37,9 +37,11 @@ class Pizza(db.Model, SerializerMixin):
     name = db.Column(db.String)
     ingredients = db.Column(db.String)
 
-    # add relationship
+     # Add relationship
+    restaurant_pizzas = relationship('RestaurantPizza', back_populates='pizza')
 
-    # add serialization rules
+    # Serialization rules
+    serialize_only = ('id', 'name', 'ingredients', 'restaurant_pizzas')
 
     def __repr__(self):
         return f"<Pizza {self.name}, {self.ingredients}>"
