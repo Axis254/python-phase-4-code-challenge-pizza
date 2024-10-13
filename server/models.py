@@ -22,7 +22,9 @@ class Restaurant(db.Model, SerializerMixin):
 
     # add relationship
     restaurant_pizzas = relationship('RestaurantPizza', back_populates='restaurant')
+    
     # add serialization rules
+    serialize_only = ('id', 'name', 'address', 'restaurant_pizzas')
 
     def __repr__(self):
         return f"<Restaurant {self.name}>"
